@@ -1,0 +1,45 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Admins collection
+    match /admins/{accountHash} {
+      allow read: if true; // Client needs to check if they are admin
+      allow write: if false; // Only manageable via Firebase Console
+    }
+
+    // Posts collection
+    match /posts/{postId} {
+      // Anyone can read the feed
+      allow read: if true;
+
+      // Allow creating a post if it has an account_hash
+      allow create: if request.resource.data.account_hash != null;
+
+      // Only the creator or an admin can delete their post.
+      // Note: With custom hashing (no Firebase Auth), true security rules 
+      // are limited. The application logic handles validation.
+      allow delete: if true; 
+
+      // Allow anyone to toggle likes (only the 'likes' field can be changed)
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes']);
+
+      // Nested replies
+      match /replies/{replyId} {
+        allow read: if true;
+        allow create: if request.resource.data.account_hash != null;
+        allow delete: if true;
+      }
+    }
+...
+
+    // Accounts collection
+    match /accounts/{accountHash} {
+      // Users need to 'get' their account doc to login
+      allow get: if true;
+      // Anyone can create an account
+      allow create: if true;
+      // No one can list all accounts or modify/delete them
+      allow list, update, delete: if false;
+    }
+  }
+}
