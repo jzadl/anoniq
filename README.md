@@ -1,7 +1,10 @@
+Tienes razón, perdón. Aquí va en inglés:
+
+---
+
 # anonQ
 
-A Twitter-style anonymous Q&A board that runs in your terminal (TUI).  
-No usernames. No passwords. Just a number, like [Mullvad VPN](https://mullvad.net).
+A Q&A board that runs in your terminal. Anonymous by default — if you want an account, you get a 16-digit number like Mullvad does. That's it.
 
 ```
  anonQ  anonymous Q&A
@@ -17,20 +20,20 @@ No usernames. No passwords. Just a number, like [Mullvad VPN](https://mullvad.ne
 
 ## Features
 
-- **Fully anonymous** — browse and post without any account
-- **Account-number login** — get a 16-digit number like `1234-5678-9012-3456` to log in (no email, no username, no password)
-- **Like / unlike** — toggle likes on any post (♥ / ♡), tracked per session
-- **Replies** — reply to any post and view threads inline
-- **My posts** — when logged in, view and delete your own posts
-- **Shared Firebase backend** — all posts are live and shared with everyone, no setup needed
-- **Graceful offline mode** — if Firebase is unreachable, the app still works locally for the session
+- Browse and post without an account
+- If you create one, you get a 16-digit number (`1234-5678-9012-3456`) — that's your login, no email or password involved
+- Like and unlike any post (♥ / ♡)
+- Replies with inline threads
+- View and delete your own posts when logged in
+- Shared Firebase backend — posts are live, no setup needed on your end
+- If Firebase is unreachable, the app keeps working locally for the session
 
 ---
 
 ## Requirements
 
 - Python 3.11+
-- That's it — Firebase is already configured and shared
+- Firebase is already configured, nothing to set up
 
 ---
 
@@ -43,7 +46,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-
 ---
 
 ## How login works
@@ -54,9 +56,9 @@ When you create an account, anonQ generates a random 16-digit number:
 1234-5678-9012-3456
 ```
 
-This number is your only credential. It is **hashed with SHA-256** before being stored — the plain number is never saved anywhere.
+That number is your only credential. It gets hashed with SHA-256 before being stored — the plain number is never saved anywhere.
 
-Write it down. There is no recovery if you lose it.
+Write it down. There's no recovery if you lose it.
 
 ---
 
@@ -64,7 +66,7 @@ Write it down. There is no recovery if you lose it.
 
 ```
 anonq/
-├── main.py             # App entry point and screen state machine
+├── main.py             # Entry point and screen state machine
 ├── ui.py               # Terminal UI rendering (blessed)
 ├── posts.py            # Post/reply/like logic
 ├── auth.py             # Account generation and login
