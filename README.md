@@ -1,10 +1,8 @@
-Tienes razón, perdón. Aquí va en inglés:
 
----
 
 # anonQ
 
-A Q&A board that runs in your terminal. Anonymous by default — if you want an account, you get a 16-digit number like Mullvad does. That's it.
+A Q&A board that runs in your terminal. Anonymous by default. if you want an account, you get a 16-digit number like Mullvad does. That's it.
 
 ```
  anonQ  anonymous Q&A
@@ -21,11 +19,11 @@ A Q&A board that runs in your terminal. Anonymous by default — if you want an 
 ## Features
 
 - Browse and post without an account
-- If you create one, you get a 16-digit number (`1234-5678-9012-3456`) — that's your login, no email or password involved
+- If you create one, you get a 16-digit number (`1234-5678-9012-3456`). that's your login, no email or password involved
 - Like and unlike any post (♥ / ♡)
 - Replies with inline threads
 - View and delete your own posts when logged in
-- Shared Firebase backend — posts are live, no setup needed on your end
+- Shared Firebase backend, posts are live, no setup needed on your end
 - If Firebase is unreachable, the app keeps working locally for the session
 
 ---
@@ -56,7 +54,7 @@ When you create an account, anonQ generates a random 16-digit number:
 1234-5678-9012-3456
 ```
 
-That number is your only credential. It gets hashed with SHA-256 before being stored — the plain number is never saved anywhere.
+That number is your only credential. It gets hashed with SHA-256 before being stored, the plain number is never saved anywhere.
 
 Write it down. There's no recovery if you lose it.
 
